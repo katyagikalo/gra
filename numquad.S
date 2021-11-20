@@ -12,7 +12,6 @@ numquad:
     push rbp				// step counter in callee saved rbp
     push r15				// b in callee saved r15
     
-    xor r14, r14
     movq r15, xmm1
     movapd xmm4, xmm1
     subsd xmm4, xmm0		// b - a
@@ -27,7 +26,6 @@ numquad:
     movapd xmm1, xmm4
     
     pxor xmm5, xmm5			// sum in xmm5
-    movq r14, xmm5
     
 loop:    
     push rbx				// f in callee saved rbx
@@ -41,9 +39,7 @@ loop:
     sub rsp, 16
     movq [rsp], xmm5
     
-    sub rsp, 8
 	call rdi
-    add rsp, 8
    
     movq xmm5, [rsp]
     add rsp, 16
@@ -57,9 +53,9 @@ loop:
     sub rsp, 16
     movq [rsp], xmm5
     
-    //sub rsp, 8
+    sub rsp, 8
 	call rdi
-    //add rsp, 8
+    add rsp, 8
     
     movq xmm5, [rsp]
     add rsp, 16
@@ -112,7 +108,6 @@ nan:
     pxor xmm0, xmm0
 	divpd xmm0, xmm7
     ret
-
 
 
 
