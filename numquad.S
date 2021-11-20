@@ -11,7 +11,6 @@ numquad:
     
     push rbp				// step counter in callee saved rbp
     push r15				// b in callee saved r15
-    push r14				// sum in r14
     
     xor r14, r14
     movq r15, xmm1
@@ -27,6 +26,9 @@ numquad:
     addsd xmm4, xmm0
     movapd xmm1, xmm4
     
+    pxor xmm5, xmm5			// sum in xmm5
+    movq r14, xmm5
+    
 loop:    
     push rbx				// f in callee saved rbx
     push r12				// a in callee saved r12
@@ -36,9 +38,15 @@ loop:
     movq r12, xmm0			// a in r12
     movq r13, xmm1			// b in r13
     
+    sub rsp, 16
+    movq [rsp], xmm5
+    
     sub rsp, 8
 	call rdi
     add rsp, 8
+   
+    movq xmm5, [rsp]
+    add rsp, 16
     
     mov rdi, rbx
     
@@ -46,9 +54,15 @@ loop:
     movq r14, xmm0			// f(a) in r14
     movq xmm0, r13			// b in xmm0
     
+    sub rsp, 16
+    movq [rsp], xmm5
+    
     //sub rsp, 8
 	call rdi
     //add rsp, 8
+    
+    movq xmm5, [rsp]
+    add rsp, 16
     
     mov rdi, rbx
     
@@ -73,26 +87,22 @@ loop:
     pop rbx
     
 begin:
-	movq xmm5, r14
     addsd xmm5, xmm0		// sum += xmm0
-    movq r14, xmm5
     
 	movapd xmm0, xmm1		// new a
     
 	movq xmm4, rbp
-    addsd xmm4, xmm0
+    addsd xmm4, xmm0		// new a + step
     movapd xmm1, xmm4		// new b
     
-    movq rax, xmm1			// if new b > start b then end
-    cmp rax, r15
-    jg end
-    
+    movq xmm4, r15			// if new b > start b then end
+    ucomisd xmm1, xmm4
+    ja end
     
     jmp loop
     
 end:
-	movq xmm0, r14
-    pop r14
+	movapd xmm0, xmm5		// sum in xmm0
     pop r15
     pop rbp
     ret
@@ -102,6 +112,8 @@ nan:
     pxor xmm0, xmm0
 	divpd xmm0, xmm7
     ret
+
+
 
 
      .align 16
