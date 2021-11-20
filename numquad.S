@@ -9,61 +9,56 @@ numquad:
 	cmp rsi, 1
     jle nan
     
-    push rbp				// step counter in callee saved rbp
-    push r15				// b in callee saved r15
+    pxor xmm5, xmm5			// sum in xmm5
+    pxor xmm6, xmm6			// b in xmm6
+    pxor xmm7, xmm7			// a in xmm7
+    pxor xmm8, xmm8			// step in xmm8
     
-    movq r15, xmm1
-    movapd xmm4, xmm1
-    subsd xmm4, xmm0		// b - a
+    movapd xmm6, xmm1
+    movapd xmm7, xmm0
+    
+    movapd xmm8, xmm1
+    subsd xmm8, xmm0		// b - a
     mov rbp, rsi			// n in rbp
     dec rbp					// n - 1 in rbp
     cvtsi2sd xmm3, rbp		// n - 1 in xmm3
-    divsd xmm4, xmm3		// (b - a) / (n - 1)
-    movq rbp, xmm4
+    divsd xmm8, xmm3		// (b - a) / (n - 1)
     
-    movq xmm4, rbp
-    addsd xmm4, xmm0
-    movapd xmm1, xmm4
-    
-    pxor xmm5, xmm5			// sum in xmm5
+    movapd xmm1, xmm8
+    addsd xmm1, xmm0
     
 loop:    
     push rbx				// f in callee saved rbx
     push r12				// a in callee saved r12
     push r13				// b in callee saved r13
+    push r14				// f(a) in callee saved r14
     
     mov rbx, rdi			// f in rbx
     movq r12, xmm0			// a in r12
     movq r13, xmm1			// b in r13
     
-    sub rsp, 16
+    sub rsp, 64
     movq [rsp], xmm5
+    movq [rsp + 16], xmm6
+    movq [rsp + 32], xmm7
+    movq [rsp + 48], xmm8
     
-	call rdi
-   
-    movq xmm5, [rsp]
-    add rsp, 16
+    sub rsp, 8
+    call rbx
     
-    mov rdi, rbx
-    
-    push r14				// f(a) in callee saved r14
     movq r14, xmm0			// f(a) in r14
     movq xmm0, r13			// b in xmm0
     
-    sub rsp, 16
-    movq [rsp], xmm5
-    
-    sub rsp, 8
-	call rdi
+	call rbx
     add rsp, 8
     
+    movq xmm8, [rsp + 48]
+    movq xmm7, [rsp + 32]
+    movq xmm6, [rsp + 16]
     movq xmm5, [rsp]
-    add rsp, 16
-    
-    mov rdi, rbx
+    add rsp, 64
     
     movq xmm1, r14
-    pop r14
     addsd xmm0, xmm1		// f(a) + f(b)
     
     movq xmm1, r13			// b in xmm3
@@ -78,6 +73,7 @@ loop:
     
     movq xmm1, r13
     
+    pop r14
     pop r13
     pop r12
     pop rbx
@@ -87,26 +83,22 @@ begin:
     
 	movapd xmm0, xmm1		// new a
     
-	movq xmm4, rbp
-    addsd xmm4, xmm0		// new a + step
-    movapd xmm1, xmm4		// new b
-    
-    movq xmm4, r15			// if new b > start b then end
-    ucomisd xmm1, xmm4
+	movapd xmm1, xmm8	// b = step
+    addsd xmm1, xmm0		// b = step + a
+    		
+    ucomisd xmm1, xmm6		// if new b > start b then end
     ja end
     
     jmp loop
     
 end:
 	movapd xmm0, xmm5		// sum in xmm0
-    pop r15
-    pop rbp
     ret
 
 nan:
-	pxor xmm7, xmm7
+	pxor xmm8, xmm8
     pxor xmm0, xmm0
-	divpd xmm0, xmm7
+	divpd xmm0, xmm8
     ret
 
 
