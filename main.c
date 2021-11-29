@@ -35,11 +35,11 @@ double fn(double x){
 int main(void){
     double a = -2, b = 4;
     for(int i = 0; i < 10; i++){
-        double c_result = regula_falsi(&fn, a, b, i);
-        double ass_result = regulafalsi(&fn, a, b, i);
+        double c_result = regula_falsi(&fn, a, b, 10);
+        double ass_result = regulafalsi(&fn, a, b, 10);
         
         if(c_result != ass_result){
-            printf("results don't match! a is: %f, b is: %f, n is: %d\n", a, b, i);
+            printf("results don't match! a is: %f, b is: %f, n is: 10\n", a, b);
             printf("c result was: %f\n", c_result);
             printf("assembler result was: %f\n", ass_result);
             break;
