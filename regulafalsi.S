@@ -89,9 +89,10 @@ samesign:
 	jmp stop
     
 neg:
-	cvttsd2si rax, xmm0
+	/*cvttsd2si rax, xmm0
     	neg rax
-    	cvtsi2sd xmm0, rax
+    	cvtsi2sd xmm0, rax*/
+	xorpd xmm0, -2147483648
     	jmp proof
     
 end_n:
