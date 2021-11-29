@@ -1,3 +1,11 @@
+    .intel_syntax noprefix
+    .global numquad
+    .global fn_x2
+
+    .text
+
+    .align 16
+
 regula_falsi:
     push rbx                    // fn
     push rbp                    // n
