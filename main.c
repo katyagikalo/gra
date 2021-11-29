@@ -33,12 +33,12 @@ double fn(double x){
 }
 
 int main(int argc, const char* argv[]){
-    int n = 8;
+    /*int n = 8;
     if(argc == 1){
         n = atoi(argv[1]);
-    }
+    }*/
     
-    printf("c result is: %f\n", regula_falsi(&fn, -2.0, 4.0, n));
-    printf("assebler result is: %f\n", regulafalsi(&fn, -2.0, 4.0, n));
+    printf("c result is: %f\n", regula_falsi(&fn, -2.0, 4.0, 4));
+    printf("assebler result is: %f\n", regulafalsi(&fn, -2.0, 4.0, 4));
     return 0;
 }
