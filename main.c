@@ -16,7 +16,7 @@ double regula_falsi(double(* fn)(double), double a, double b, unsigned n){
         return c;
     }
     
-    printf("a is: %f, b is: %f, fn(c) is: %f\n", a, b, fn(c));
+    //printf("a is: %f, b is: %f, fn(c) is: %f\n", a, b, fn(c));
     
     if(fn(a) * fn(c) >= 0){
         return regula_falsi(fn, c, b, n-1);
@@ -31,6 +31,7 @@ double fn(double x){
 }
 
 int main(void){
-    printf("result is: %f\n", regula_falsi(&fn, -2.0, 4.0, 14));
+    printf("c result is: %f\n", regula_falsi(&fn, -2.0, 4.0, 8));
+    printf("assebler result is: %f\n", regulafalsi(&fn, -2.0, 4.0, 8));
     return 0;
 }
