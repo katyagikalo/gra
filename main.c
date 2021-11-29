@@ -36,8 +36,8 @@ int main(void){
     double a = -2, b = 4;
     
     for(int i = 0; i < 20; i++){
-        double c_result = regula_falsi(&fn, a, b, i);
-        double ass_result = regulafalsi(&fn, a, b, i);
+        double c_result = regula_falsi(&fn, a, b, 6);
+        double ass_result = regulafalsi(&fn, a, b, 6);
         
         if(c_result != ass_result){
             printf("results don't match! a is: %f, b is: %f, n is: %d\n", a, b, i);
