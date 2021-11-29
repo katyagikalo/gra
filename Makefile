@@ -1,8 +1,7 @@
 CFLAGS=-std=gnu11 -O3 -Wall -Wextra -Wpedantic
 
 .PHONY: all clean
-all: main.out
-main: main.c
+all: main
+main: main.c regulafarsi.S
 clean:
-	rm -f main.out
-
+	rm -f main
