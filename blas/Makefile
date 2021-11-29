@@ -1,9 +1,8 @@
-CFLAGS=-g -Wall -Wextra -std=c11 -O3
+CFLAGS=-std=gnu11 -O3 -Wall -Wextra -Wpedantic
 
- .PHONY: all
- all: blas
- blas: blas.c saxpy.S
+.PHONY: all clean
+all: main.out
+main: main.c
+clean:
+	rm -f main.out
 
- .PHONY: clean
- clean:
- 	rm -f blas
