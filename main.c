@@ -32,12 +32,7 @@ double fn(double x){
     return x*x*x-4*x*x+x+3;
 }
 
-int main(int argc, const char* argv[]){
-    /*int n = 8;
-    if(argc == 1){
-        n = atoi(argv[1]);
-    }*/
-    
+int main(void){
     printf("c result is: %f\n", regula_falsi(&fn, -2.0, 4.0, 4));
     printf("assebler result is: %f\n", regulafalsi(&fn, -2.0, 4.0, 4));
     return 0;
