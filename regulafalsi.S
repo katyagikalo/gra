@@ -98,7 +98,7 @@ end_n:
 	movsd xmm0, [rsp]
     	jmp end
 end_0:
-	movsd xmm0, [rsp + 0x20]
+	//movsd xmm0, [rsp + 0x20]
 end:
 	add rsp, 0x28
     	pop rbx
