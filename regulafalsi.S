@@ -1,12 +1,11 @@
     .intel_syntax noprefix
-    .global numquad
-    .global fn_x2
+    .global regulafalsi
 
     .text
 
     .align 16
 
-regula_falsi:
+regulafalsi:
     push rbx                    // fn
     push rbp                    // n
     sub rsp, 0x28                // 0x0: current a, 0x8: current b, 0x10: fn(a), 0x18: fn(b), 0x20: c
