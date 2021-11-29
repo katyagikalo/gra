@@ -34,16 +34,15 @@ double fn(double x){
 
 int main(void){
     double a = -2, b = 4;
+    unsigned n = 6;
     
-    for(int i = 0; i < 20; i++){
-        double c_result = regula_falsi(&fn, a, b, 6);
-        double ass_result = regulafalsi(&fn, a, b, 6);
+    double c_result = regula_falsi(&fn, a, b, n);
+    double ass_result = regulafalsi(&fn, a, b, n);
         
-        if(c_result != ass_result){
-            printf("results don't match! a is: %f, b is: %f, n is: %d\n", a, b, i);
-            printf("c result was: %f\n", c_result);
-            printf("assembler result was: %f\n", ass_result);
-        }
-    }
+    if(c_result != ass_result){
+        printf("results don't match! a is: %f, b is: %f, n is: %d\n", a, b, n);
+        printf("c result was: %f\n", c_result);
+        printf("assembler result was: %f\n", ass_result);
+     }
     return 0;
 }
