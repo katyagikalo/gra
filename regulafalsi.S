@@ -9,6 +9,7 @@ regulafalsi:
 	push rbx					// fn
     	push rbp					// n
     	sub rsp, 0x50				// 0x0: current a, 0x10: current b, 0x20: fn(a), 0x30: fn(b), 0x40: c
+	sub rsp, 8
     
     	mov rbx, rdi
     	mov rbp, rsi
@@ -100,6 +101,7 @@ end_n:
 end_0:
 	movsd xmm0, [rsp + 0x40]
 end:
+	add rsp, 8
 	add rsp, 0x50
     	pop rbx
     	pop rbp
