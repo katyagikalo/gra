@@ -1,9 +1,9 @@
 CFLAGS=-g -Wall -Wextra -std=c11 -O3
 
 .PHONY: all
-all: blas
-blas: blas.c saxpy.S
+all: main.out
+blas: main.c regulafarsi.S
 
 .PHONY: clean
 clean:
-	rm -f blas
+	rm -f main.out
