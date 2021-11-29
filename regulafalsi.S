@@ -92,17 +92,22 @@ neg:
 	/*cvttsd2si rax, xmm0
     	neg rax
     	cvtsi2sd xmm0, rax*/
-	xorpd xmm0, -2147483648
+	xorpd xmm0, XMMWORD PTR .LC0[rip]
     	jmp proof
     
 end_n:
 	movsd xmm0, [rsp]
     	jmp end
 end_0:
-	movsd xmm0, [rsp]
-	//movsd xmm0, [rsp + 0x20]
+	movsd xmm0, [rsp + 0x20]
 end:
 	add rsp, 0x28
     	pop rbx
     	pop rbp
 	ret
+	
+.LC0:
+        .long   0
+        .long   -2147483648
+        .long   0
+        .long   0
