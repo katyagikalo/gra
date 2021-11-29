@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <stddef.h>
-#include <regulafalsi.h>
+
+#include "regulafalsi.h"
 
 double regula_falsi(double(* fn)(double), double a, double b, unsigned n){
     
