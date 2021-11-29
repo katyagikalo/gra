@@ -90,7 +90,8 @@ samesign:
     
 neg:
 	pxor xmm2, xmm2
-	subsd 
+	subsd xmm2, xmm0
+	movsd xmm0, xmm2
 	/*cvttsd2si rax, xmm0
     	neg rax
     	cvtsi2sd xmm0, rax*/
