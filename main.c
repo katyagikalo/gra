@@ -34,7 +34,7 @@ double fn(double x){
 
 int main(void){
     double a = -2, b = 4;
-    ubsigned n = 6;
+    unsigned n = 6;
     double c_result = regula_falsi(&fn, a, b, n);
     double ass_result = regulafalsi(&fn, a, b, n);
         
