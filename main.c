@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stddef.h>
+#include <regulafalsi.h>
 
 double regula_falsi(double(* fn)(double), double a, double b, unsigned n){
     
@@ -30,8 +31,9 @@ double fn(double x){
     return x*x*x-4*x*x+x+3;
 }
 
-int main(void){
-    printf("c result is: %f\n", regula_falsi(&fn, -2.0, 4.0, 8));
-    printf("assebler result is: %f\n", regulafalsi(&fn, -2.0, 4.0, 8));
+int main(int argc, const char* argv[]){
+    int n = argv[1];
+    printf("c result is: %f\n", regula_falsi(&fn, -2.0, 4.0, n));
+    printf("assebler result is: %f\n", regulafalsi(&fn, -2.0, 4.0, n));
     return 0;
 }
