@@ -32,7 +32,7 @@ int main(void){
     double a = -2, b = 4;
     int i = 6;
     
-    double c_result = regula_falsi(fn, a, b, i);
+    /*double c_result = regula_falsi(fn, a, b, i);
     double ass_result = regulafalsi(fn, a, b, i);
     
     if(c_result != ass_result){
@@ -42,9 +42,9 @@ int main(void){
     }
     
     c_result = regula_falsi(fn, a, b, i+1);
-    ass_result = regulafalsi(fn, a, b, i+1);
+    ass_result = regulafalsi(fn, a, b, i+1);*/
     
-    /*for(int i = 0; i < 20; i++){
+    for(i = 6; i < 8; i++){
         double c_result = regula_falsi(fn, a, b, i);
         double ass_result = regulafalsi(fn, a, b, i);
         
@@ -53,12 +53,12 @@ int main(void){
             printf("c result was: %f\n", c_result);
             printf("assembler result was: %f\n", ass_result);
         }
-    }*/
+    }
     
-    if(c_result != ass_result){
+    /*if(c_result != ass_result){
         printf("results don't match! a is: %f, b is: %f, n is: %d\n", a, b, i);
         printf("c result was: %f\n", c_result);
         printf("assembler result was: %f\n", ass_result);
-    }
+    }*/
     return 0;
 }
