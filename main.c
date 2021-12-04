@@ -28,10 +28,6 @@ double regula_falsi(double(* fn)(double), double a, double b, unsigned n){
     }
 }
 
-double fn(double x){
-    return x*x*x-4*x*x+x+3;
-}
-
 int main(void){
     double a = -2, b = 4;
     unsigned n = 6;
