@@ -120,7 +120,7 @@ fn: // double fn(double)
     movsd xmm0, [rsp - 0x18]
     
     movsd xmm1, xmm0		// x
-    mulsd xmm0, xmmo		// x2
+    mulsd xmm0, xmm0		// x2
     addsd xmm0, xmm1		// x2 + x
     
     mov eax, 10
