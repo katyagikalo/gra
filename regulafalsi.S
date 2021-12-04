@@ -1,5 +1,6 @@
     .intel_syntax noprefix
     .global regulafalsi
+    .global fn
 
     .text
 
@@ -102,7 +103,7 @@ end:
 	ret
 	
     .align 16
-fn_x2: // double fn_x2(double)
+fn: // double fn(double)
     // This function makes full use of its rights granted by the ABI.
     // No need to reduce the stack pointer, as the ABI defines
     // a freely usable "red zone" of 128 Bytes below rsp.
