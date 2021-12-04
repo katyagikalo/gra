@@ -4,5 +4,6 @@
 #include <stddef.h>
 
 double regulafalsi(double(* fn)(double), double a, double b, unsigned n);
+double fn(double);
 
 #endif
