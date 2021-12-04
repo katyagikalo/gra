@@ -43,22 +43,27 @@ int main(void){
     double c_result = regula_falsi(fn, a, b, n);
     double ass_result = regulafalsi(fn, a, b, n);
     check(a, b, n, c_result, ass_result);
+    printf("assembler result was: %f\n", ass_result);
    
     c_result = regula_falsi(fn, a, b, n+1);
     ass_result = regulafalsi(fn, a, b, n+1);
     check(a, b, n+1, c_result, ass_result);
+    printf("assembler result was: %f\n", ass_result);
     
     c_result = regula_falsi(fn, a, b, n+2);
     ass_result = regulafalsi(fn, a, b, n+2);
     check(a, b, n+2, c_result, ass_result);
+    printf("assembler result was: %f\n", ass_result);
     
     c_result = regula_falsi(fn, a, b, n+3);
     ass_result = regulafalsi(fn, a, b, n+3);
     check(a, b, n+3, c_result, ass_result);
+    printf("assembler result was: %f\n", ass_result);
     
     c_result = regula_falsi(fn, a, b, n+4);
     ass_result = regulafalsi(fn, a, b, n+4);
     check(a, b, n+4, c_result, ass_result);
+    printf("assembler result was: %f\n", ass_result);
     
     /*for(int i = 6; i < 8; i++){
         c_result = regula_falsi(&fn, a, b, i);
