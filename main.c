@@ -41,11 +41,11 @@ int main(void){
         double c_result = regula_falsi(fn, a, b, 6);
         double ass_result = regulafalsi(fn, a, b, 6);
         
-        if(c_result != ass_result){
+        /*if(c_result != ass_result){
             printf("results don't match! a is: %f, b is: %f, n is: %d\n", a, b, i);
             printf("c result was: %f\n", c_result);
             printf("assembler result was: %f\n", ass_result);
-        }
+        }*/
     }
     
     return 0;
